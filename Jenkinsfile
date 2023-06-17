@@ -42,8 +42,8 @@ pipeline{
                 script{
                     env.NODE_IP = sh(script: 'terraform output -raw node_public_ip', returnStdout:true).trim()
                     env.DB_HOST = sh(script: 'terraform output -raw postgre_private_ip', returnStdout:true).trim()
-                    env.DB_NAME = sh(script: 'aws --region=us-east-1 ssm get-parameters --names "DB_NAME" --query "Parameters[*].{Value:Value}" --output text', returnStdout:true).reim()
-                    env.DB_PASSWORD = sh(script: 'aws --region=us-east-1 ssm get-parameters --names "DB_PASSWORD" --query "Parameters[*].{Value:Value}" --output text', returnStdout:true).reim()
+                    env.DB_NAME = sh(script: 'aws --region=us-east-1 ssm get-parameters --names "DB_NAME" --query "Parameters[*].{Value:Value}" --output text', returnStdout:true).trim()
+                    env.DB_PASSWORD = sh(script: 'aws --region=us-east-1 ssm get-parameters --names "DB_PASSWORD" --query "Parameters[*].{Value:Value}" --output text', returnStdout:true).trim()
                 }
                 sh 'echo ${DB_HOST}'
                 sh 'echo ${NODE_IP}'
