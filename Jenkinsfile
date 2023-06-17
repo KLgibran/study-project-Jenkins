@@ -53,9 +53,9 @@ pipeline{
                 sh 'cat ./nodejs/server/.env'
                 sh 'envsubst < react-env-template > ./react/client/.env'
                 sh 'cat ./react/client/.env'
-                sh 'docker build --force-rm "${ECR_REGISTRY}/${APP_REPO_NAME}:postgre" -f ./postgresql/Dockerfile .'
-                sh 'docker build --force-rm "${ECR_REGISTRY}/${APP_REPO_NAME}:nodejs" -f ./nodejs/Dockerfile .'
-                sh 'docker build --force-rm "${ECR_REGISTRY}/${APP_REPO_NAME}:react" -f ./react/Dockerfile .'
+                sh 'docker build --force-rm -t "${ECR_REGISTRY}/${APP_REPO_NAME}:postgre" -f ./postgresql/Dockerfile .'
+                sh 'docker build --force-rm -t "${ECR_REGISTRY}/${APP_REPO_NAME}:nodejs" -f ./nodejs/Dockerfile .'
+                sh 'docker build --force-rm -t "${ECR_REGISTRY}/${APP_REPO_NAME}:react" -f ./react/Dockerfile .'
                 sh 'docker image ls'
             }
         }
