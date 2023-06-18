@@ -76,7 +76,7 @@
     - name: log in to AWS ec2-user
       ansible.builtin.shell: |
         export PATH=/usr/local/bin:$PATH
-        source /home/ec2-user/.aws/credentials
+        source "./aws/install"
         aws ecr get-login-password --region {{ aws_region }} | docker login --username AWS --password-stdin {{ ecr_registry }}
 
 - name: postgre database config
