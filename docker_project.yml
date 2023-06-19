@@ -3,7 +3,7 @@
   become: true
   vars:
     aws_region: us-east-1
-    ecr_registry: 277322917179.dkr.ecr.us-east-1.amazonaws.com
+    ecr_registry: XXXXXXXXXX.dkr.ecr.us-east-1.amazonaws.com # your ecr repository
   tasks:
     - name: update all packages
       ansible.builtin.yum:
@@ -81,8 +81,8 @@
   hosts: _ansible_postgresql
   become: true
   vars:
-    container_name: oliver_postgre
-    image_name: 277322917179.dkr.ecr.us-east-1.amazonaws.com/gibran-repo/study-project-jenkins:postgre
+    container_name: gibran_postgre
+    image_name: XXXXXXXXXX.dkr.ecr.us-east-1.amazonaws.com/gibran-repo/study-project-jenkins:postgre # your ecr repository
   tasks:
     - name: remove postgre container
       community.docker.docker_container:
@@ -103,7 +103,7 @@
         ports:
           - "5432:5432"
         env:
-          POSTGRES_PASSWORD: "Pp123456789"
+          POSTGRES_PASSWORD: "xxxxxxx" #your password
         volumes:
           - /db-data:/var/lib/postgresql/data
 
@@ -111,8 +111,8 @@
   hosts: _ansible_nodejs
   become: true
   vars:
-    container_name: oliver_nodejs
-    image_name: 277322917179.dkr.ecr.us-east-1.amazonaws.com/gibran-repo/study-project-jenkins:nodejs
+    container_name: gibran_nodejs
+    image_name: XXXXXXXXXX.dkr.ecr.us-east-1.amazonaws.com/gibran-repo/study-project-jenkins:nodejs # your ecr repository
   tasks:
     - name: remove postgre container
       community.docker.docker_container:
@@ -137,8 +137,8 @@
   hosts: _ansible_react
   become: true
   vars:
-    container_name: oliver_react
-    image_name: 277322917179.dkr.ecr.us-east-1.amazonaws.com/gibran-repo/study-project-jenkins:react
+    container_name: gibran_react
+    image_name: XXXXXXXXXX.dkr.ecr.us-east-1.amazonaws.com/gibran-repo/study-project-jenkins:react # your ecr repository
   tasks:
     - name: remove postgre container
       community.docker.docker_container:

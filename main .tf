@@ -6,7 +6,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "jenkins-ibe-backend"
+    bucket = "XXXXXXx" #your bucket name
     key = "backend/tf-backend-jenkins.tfstate"
     region = "us-east-1"
   }
@@ -28,9 +28,9 @@ resource "aws_instance" "managed_nodes" {
   ami = "ami-016eb5d644c333ccb"
   count = 3
   instance_type = "t2.micro"
-  key_name = "gibranAWS"  # change with your pem file
+  key_name = "XXXXXXXXX"  # change with your pem file
   vpc_security_group_ids = [aws_security_group.tf-sec-gr.id]
-  iam_instance_profile = "jenkins-project-profile-200-${var.user}" # we created this with jenkins server
+  iam_instance_profile = "XXXXXXXXXXXXXXX-${var.user}" # we created this with jenkins server
   tags = {
     Name = "ansible_${element(var.tags, count.index )}"
     stack = "ansible_project"
@@ -43,9 +43,9 @@ resource "aws_instance" "managed_nodes" {
 }
 
 resource "aws_security_group" "tf-sec-gr" {
-  name = "project208-sec-gr-${var.user}"
+  name = "project-sec-gr-${var.user}"
   tags = {
-    Name = "project208-sec-gr"
+    Name = "project-sec-gr"
   }
 
   ingress {
